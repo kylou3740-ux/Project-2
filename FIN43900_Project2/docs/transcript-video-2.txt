@@ -1,0 +1,199 @@
+VIDEO 2 — CODE WALKTHROUGH (DRAFT SCRIPT / TRANSCRIPT)
+
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:05.460
+So, hi. In this video, I'll walk through the technical structure of my application.
+
+2
+00:00:06.120 --> 00:00:09.780
+I'll try to explain how the data, calculations, portfolio optimization, all the
+
+3
+00:00:09.840 --> 00:00:15.750
+good stuff together. The application was built using Python and Streamlit, and
+
+4
+00:00:15.780 --> 00:00:18.150
+I separated the user interface and data retrieval
+
+5
+00:00:20.160 --> 00:00:22.350
+from the core portfolio calculations.
+
+6
+00:00:22.860 --> 00:00:27.420
+And I also created a separate test file to check some of the application's
+
+7
+00:00:27.451 --> 00:00:29.340
+underlying functions and behavior.
+
+8
+00:00:29.970 --> 00:00:34.740
+I think that just keeps it, and we can test the financial calculations independent
+
+9
+00:00:34.800 --> 00:00:36.090
+to the user interface.
+
+10
+00:00:37.770 --> 00:00:42.420
+Also, disclaimer, I did use AI for this project.
+
+11
+00:00:43.560 --> 00:00:48.210
+I checked through all of its outputs, and also, this is purely for educational
+
+12
+00:00:48.270 --> 00:00:48.840
+purposes.
+
+13
+00:00:50.670 --> 00:00:55.231
+So first, let's start out with the data retrieval and processing methods.
+
+14
+00:00:55.710 --> 00:00:59.430
+So the application downloads adjusted price using Yahoo Finance.
+
+15
+00:01:00.750 --> 00:01:05.670
+And as you can see, it allows the user to select a data cutoff and estimation
+
+16
+00:01:05.730 --> 00:01:06.120
+period.
+
+17
+00:01:07.860 --> 00:01:09.540
+And then, as you can see,
+
+18
+00:01:12.990 --> 00:01:17.100
+daily observations after the selected cutoff are filtered out, and incomplete
+
+19
+00:01:17.190 --> 00:01:19.500
+monthly periods are excluded before calculating.
+
+20
+00:01:22.350 --> 00:01:27.480
+And then for the calculation, the momentum signal uses a look-back period while
+
+21
+00:01:27.540 --> 00:01:31.500
+skipping the most recent month. This helps avoid using incomplete periods, although
+
+22
+00:01:31.530 --> 00:01:34.770
+the underlying finance data is still not a fully
+
+23
+00:01:35.280 --> 00:01:40.230
+point-in-time historical data.
+
+24
+00:01:41.970 --> 00:01:47.730
+And as you can see, the core calculations and functions estimate annualized return
+
+25
+00:01:47.760 --> 00:01:50.220
+and volatility from monthly returns.
+
+26
+00:01:51.810 --> 00:01:54.570
+They calculate maximum drawdown,
+
+27
+00:01:56.190 --> 00:01:58.830
+and they measure portfolio performance.
+
+28
+00:02:00.840 --> 00:02:05.670
+The implementation cost assumption is applied as a one-time deduction to the first
+
+29
+00:02:05.730 --> 00:02:08.400
+period rather than a recurring annual fee.
+
+30
+00:02:08.970 --> 00:02:11.700
+These are historical estimates and not forecasts.
+
+31
+00:02:13.921 --> 00:02:17.940
+This application compares two baselines, equal weight
+
+32
+00:02:20.130 --> 00:02:22.260
+and inverse volatility.
+
+33
+00:02:25.110 --> 00:02:30.900
+It also creates a constrained momentum portfolio by selecting the two highest risk
+
+34
+00:02:30.960 --> 00:02:33.421
+sleeves and combining them with the reserve asset.
+
+35
+00:02:35.250 --> 00:02:41.130
+The optimizer evaluates possible allocations in 5% increments,
+
+36
+00:02:41.220 --> 00:02:47.190
+rejects portfolios that fail the estimated return hurdle or minimum
+
+37
+00:02:47.250 --> 00:02:51.480
+reserve requirement, and selects the feasible allocation with the lowest estimated
+
+38
+00:02:51.540 --> 00:02:55.891
+volatility. If no feasible portfolio exists, the application does not hold an
+
+39
+00:02:55.950 --> 00:02:56.490
+allocation.
+
+40
+00:02:59.010 --> 00:03:04.440
+It checks whether the portfolio weights sum up to 100, whether the
+
+41
+00:03:04.470 --> 00:03:09.090
+portfolio is long only, whether the reserve allocation meets the minimum.
+
+42
+00:03:09.930 --> 00:03:15.840
+And however, several mandate requirements cannot be fully verified through
+
+43
+00:03:15.870 --> 00:03:21.690
+the current prototype, including user, issuer concentration, liquidity turnover, et
+
+44
+00:03:21.750 --> 00:03:21.990
+cetera.
+
+45
+00:03:24.060 --> 00:03:27.541
+On the other hand, the application does report these limitations rather than
+
+46
+00:03:27.750 --> 00:03:28.860
+assuming compliance.
+
+47
+00:03:30.510 --> 00:03:34.140
+Finally, I created automated tests for the core calculations and decision
+
+48
+00:03:34.201 --> 00:03:39.270
+behaviors, including annualized statistics, drawdown, and momentum lookback,
+
+49
+00:03:41.041 --> 00:03:41.880
+all that stuff.

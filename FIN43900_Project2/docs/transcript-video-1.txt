@@ -1,0 +1,34 @@
+VIDEO 1 — SYSTEM AND THINKING CHANGED 
+
+## Opening & AI Disclosure
+
+Hi, I'm presenting my FIN 43900 Project 2, which is an investment management application designed to compare portfolio allocation strategies under an investment mandate.
+
+Throughout the project I used ChatGPT and Copilot for project organization, coding assistance, debugging, and documentation review. Of course, AI-generated outputs were only treated as suggestions, and I reviewed all outputs. This project is for educational purposes only and is not investment advice.
+
+## How My System Evolved
+
+When I started this project, I wanted to create a system that could incorporate investment constraints and consider whether a portfolio would actually be appropriate under a specific mandate. I didn’t want it to just compare historical returns.
+
+I developed three approaches to compare: an equal-weight portfolio, an inverse-volatility portfolio, and a constrained momentum strategy. This allowed me to compare a simple baseline, a risk-based allocation approach, and a strategy that incorporates historical momentum while respecting selected constraints.
+
+While I was doing all of this, one of the most important things, in my opinion, was keeping in mind that just because a portfolio has an attractive historical performance, that doesn’t mean it’s necessarily suitable for implementation.
+I think that this kind of influenced the way I incorporated mandate checks, feasibility conditions, and stop-and-review criteria.
+
+## What I Learned
+
+Throughout this project, I came to realize how heavily portfolio optimization depends on the assumptions, constraints, and the data that was used. I mean, like I said before, just because a strategy looks to be attractive based on historical results, that doesn’t automatically mean it will perform well in the future too. Or satisfy every investment requirement. I think that this ultimately made me a little bit more cautious when it came to how I treated the output as an investment recommendation.
+
+## AI-Output Verification
+
+
+
+One specific thing I used AI on was to help review the logic of the portfolio optimizer, specifically whether it respected the reserve requirement and whether it correctly handled situations where a feasible allocation could not be found.
+
+I then ran the application's automated tests, including tests for feasible allocations, reserve constraints, and infeasible optimization scenarios. All six of my automated tests passed in my final test run.
+
+I mean, this doesn’t necessarily establish that the model is free from errors or that the investment strategy will perform well in the future. However, it did help me verify that the application behaved as expected in those tested scenarios. 
+
+## Closing
+
+Overall, this project helped me better understand the importance of combining quantitative analysis with investment judgment, validating assumptions, and recognizing the limitations of a model before using its results to support a decision.
